@@ -8,7 +8,6 @@ add_executable(sdl-helloworld
 )
 
 target_link_libraries(sdl-helloworld PRIVATE SDL3::SDL3)
-target_link_libraries(sdl-helloworld PUBLIC SDL3::Headers)
 
 # This is safe to set on all platforms. Otherwise your SDL app will
 #  have a terminal window pop up with it on Windows.
