@@ -3,7 +3,7 @@ name: Build
 on: [push, pull_request]
 
 jobs:
-  Build:
+  desktop:
     name: ${{ matrix.platform.name }}
     runs-on: ${{ matrix.platform.os }}
 
@@ -22,7 +22,20 @@ jobs:
         version: sdl3-head
     - name: Get project sources
       uses: actions/checkout@v4
-    - name: Configure CMake
+    - name: Configure (CMake)
       run: cmake -B build ${{ matrix.platform.flags }} -DDOWNLOAD_DEPENDENCIES=OFF
-    - name: Build
+    - name: Build (CMake)
       run: cmake --build build/
+
+  emscripten:
+    name: Emscripten
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get project sources
+        uses: actions/checkout@v4
+      - uses: mymindstorm/setup-emsdk@master
+      - name: Configure (CMake)
+        run: emcmake cmake -B build ${{ matrix.platform.flags }} -DDOWNLOAD_DEPENDENCIES=ON
+      - name: Build (CMake)
+        run: cmake --build build/
