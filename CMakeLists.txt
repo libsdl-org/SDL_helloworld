@@ -31,3 +31,8 @@ target_link_libraries(sdl-helloworld PRIVATE SDL3::SDL3)
 # This is safe to set on all platforms. Otherwise your SDL app will
 #  have a terminal window pop up with it on Windows.
 set_property(TARGET sdl-helloworld PROPERTY WIN32_EXECUTABLE TRUE)
+
+if(EMSCRIPTEN)
+    # Create a html webpage
+    set_property(TARGET sdl-helloworld PROPERTY SUFFIX ".html")
+endif()
