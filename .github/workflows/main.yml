@@ -21,8 +21,8 @@ jobs:
       with:
         version: sdl3-head
     - name: Get project sources
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Configure CMake
-      run: cmake -B build ${{ matrix.platform.flags }}
+      run: cmake -B build ${{ matrix.platform.flags }} -DDOWNLOAD_DEPENDENCIES=OFF
     - name: Build
       run: cmake --build build/
