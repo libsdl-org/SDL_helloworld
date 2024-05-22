@@ -17,7 +17,7 @@ static int setup_program(int argc, char **argv)
         return -1;
     }
 
-    renderer = SDL_CreateRenderer(window, NULL, 0);
+    renderer = SDL_CreateRenderer(window, NULL);
     if (!renderer) {
         SDL_Log("SDL_CreateRenderer() failed: %s", SDL_GetError());
         return -1;
