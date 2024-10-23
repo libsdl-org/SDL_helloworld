@@ -6,14 +6,12 @@ jobs:
   desktop:
     name: ${{ matrix.platform.name }}
     runs-on: ${{ matrix.platform.os }}
-
     strategy:
       matrix:
         platform:
         - { name: Linux,   os: ubuntu-latest }
         - { name: Windows, os: windows-latest }
         - { name: MacOS,   os: macos-latest }
-
     steps:
     - name: Set up SDL
       id: sdl
@@ -30,7 +28,6 @@ jobs:
   emscripten:
     name: Emscripten
     runs-on: ubuntu-latest
-
     steps:
       - name: Get project sources
         uses: actions/checkout@v4
@@ -39,3 +36,19 @@ jobs:
         run: emcmake cmake -B build ${{ matrix.platform.flags }} -DDOWNLOAD_DEPENDENCIES=ON
       - name: Build (CMake)
         run: cmake --build build/
+
+  android:
+    name: Android
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get project sources
+        uses: actions/checkout@v4
+      - name: Download SDL3 Android Archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run:
+          gh -R libsdl-org/SDL release download preview-3.1.3 -D android-project/app/libs -p '*.aar'
+      - name: Build gradle project
+        run: |
+          cd android-project
+          ./gradlew -i assembleRelease
