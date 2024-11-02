@@ -22,6 +22,13 @@ else()
     find_package(SDL3 CONFIG REQUIRED)
 endif()
 
+if(ANDROID)
+    # SDL applications need to be built as a shared library
+    function(add_executable TARGET)
+        add_library(${TARGET} SHARED ${ARGN})
+    endfunction()
+endif()
+
 add_executable(sdl-helloworld
     main.c
 )
