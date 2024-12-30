@@ -61,15 +61,8 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
         return SDL_APP_FAILURE;
     }
 
-    window = SDL_CreateWindow("Hello SDL", 640, 480, 0);
-    if (!window) {
-        SDL_Log("SDL_CreateWindow() failed: %s", SDL_GetError());
-        return SDL_APP_FAILURE;
-    }
-
-    renderer = SDL_CreateRenderer(window, NULL);
-    if (!renderer) {
-        SDL_Log("SDL_CreateRenderer() failed: %s", SDL_GetError());
+    if (!SDL_CreateWindowAndRenderer("Hello SDL", 640, 480, 0, &window, &renderer)) {
+        SDL_Log("SDL_CreateWindowAndRenderer() failed: %s", SDL_GetError());
         return SDL_APP_FAILURE;
     }
 
