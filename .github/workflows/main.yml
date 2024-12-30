@@ -49,6 +49,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run:
           gh -R libsdl-org/SDL release download preview-3.1.6 -D android-project/app/libs -p '*.aar'
+      - name: Setup required Java version
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
       - name: Build gradle project
         run: |
           cd android-project
