@@ -45,5 +45,4 @@ android {
 
 dependencies {
     implementation files('libs/SDL3-3.1.6.aar')
-    implementation 'androidx.appcompat:appcompat:1.5.1'
 }
