@@ -39,7 +39,7 @@ SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event)
 
         case SDL_EVENT_KEY_DOWN:  /* quit if user hits ESC key */
             if (event->key.scancode == SDL_SCANCODE_ESCAPE) {
-                return 1;
+                return SDL_APP_SUCCESS;
             }
             break;
 
