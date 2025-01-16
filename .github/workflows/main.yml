@@ -47,8 +47,9 @@ jobs:
       - name: Download SDL3 Android Archive
         env:
           GH_TOKEN: ${{ github.token }}
-        run:
-          gh -R libsdl-org/SDL release download preview-3.1.6 -D android-project/app/libs -p '*.aar'
+        run: |
+          gh -R libsdl-org/SDL release download prerelease-3.1.10 -p 'SDL3-devel-*-android.zip'
+          unzip "SDL3-devel-3.1.10-android.zip" -d android-project/app/libs SDL3-3.1.10.aar
       - name: Setup required Java version
         uses: actions/setup-java@v4
         with:
