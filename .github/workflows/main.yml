@@ -48,8 +48,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh -R libsdl-org/SDL release download prerelease-3.1.10 -p 'SDL3-devel-*-android.zip'
-          unzip "SDL3-devel-3.1.10-android.zip" -d android-project/app/libs SDL3-3.1.10.aar
+          gh -R libsdl-org/SDL release download release-3.2.0 -p 'SDL3-devel-*-android.zip'
+          unzip "SDL3-devel-3.2.0-android.zip" -d android-project/app/libs SDL3-3.2.0.aar
       - name: Setup required Java version
         uses: actions/setup-java@v4
         with:
