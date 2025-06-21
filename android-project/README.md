@@ -32,6 +32,6 @@ Only 2 changes are required:
    ```gradle
    dependencies {
      /* ... */      
-     implementation files('libs/SDL3-3.2.0.aar')
+     implementation files('libs/SDL3-3.2.16.aar')
    }
    ```
